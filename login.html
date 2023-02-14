@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function validateForm() {
+            // Validate username
+            var username = document.forms["loginForm"]["username"].value;
+            if (username.length > 10) {
+                alert("Username should not be more than 10 characters");
+                return false;
+            }
+
+            // Validate email
+            var email = document.forms["loginForm"]["email"].value;
+            if (!email.includes("@")) {
+                alert("Email should contain @ symbol");
+                return false;
+            }
+
+            // Validate password and confirm password
+            var password = document.forms["loginForm"]["password"].value;
+            var confirmPassword = document.forms["loginForm"]["confirmPassword"].value;
+            if (password != confirmPassword) {
+                alert("Password and Confirm Password do not match");
+                return false;
+            }
+
+            var dob = document.forms["loginForm"]["dob"].value;
+            var arr = dob.split("-");
+            var year = parseInt(arr[0]);
+            if (year > 2003) {
+                alert("Enter a valid date of birth");
+
+                return false;
+            }
+
+
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <form name="loginForm" onsubmit="return validateForm()" action="/index.html">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required oninput="this.setAttribute('value', this.value);">
+        <br><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" name="confirmPassword" required oninput="this.setAttribute('value', this.value);">
+        <br><br>
+        <label for="dob">Date of birth:</label>
+        <input type="Date" name="dob" required><br><br>
+        <label for="dept">Departments</label>
+
+        <select id="departments" name="departments">
+        <option value="CSE">CSE</option>
+        <option value="IT">IT</option>
+        <option value="MECT">MECT</option>
+        <option value="ECE">ECE</option>
+        <option value="EEE">EEE</option>
+      </select>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
